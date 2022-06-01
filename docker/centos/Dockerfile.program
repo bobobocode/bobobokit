@@ -1,0 +1,45 @@
+ARG centos_version=7
+FROM centos:$centos_version
+# needed to do again after FROM due to docker limitation
+ARG centos_version
+
+RUN locale
+RUN localedef -i zh_CN -c -f UTF-8 zh_CN.UTF-8
+RUN echo "export LC_ALL=zh_CN.UTF-8" >> /etc/profile && source /etc/profile
+ENV LANG zh_CN.UTF-8
+ENV LC_CTYPE zh_CN.UTF-8
+
+RUN yum install -y git  \
+    subversion \
+    gcc \
+    cmake \
+    gcc-c++ \
+    make \
+    python3 \
+    python3-devel \
+    java-1.8.0-openjdk-devel \
+    maven \
+    zsh \
+    ncurses-devel \
+    ruby \
+    ruby-devel \
+    lua \
+    lua-devel \
+    perl \
+    perl-devel \
+    perl-ExtUtils-Embed \
+    lrzsz \
+    wget \
+    unzip \
+    && yum clean all
+
+WORKDIR /var/code
+
+COPY ./install_vim.sh .
+COPY ./config_tools.sh .
+COPY ./install_ohmyzsh.sh .
+
+RUN chmod +x ./install_vim.sh \
+    && ./install_vim.sh \
+    && chmod +x ./config_tools.sh \
+    && ./config_tools.sh

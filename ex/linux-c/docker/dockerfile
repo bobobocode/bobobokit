@@ -1,0 +1,9 @@
+from centos:8
+
+run yum install -y gcc \
+    gdb \
+    make \
+    python39 \
+    python39-devel.x86_64
+
+cmd ["tail", "-f", "/dev/null"]

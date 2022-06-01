@@ -1,0 +1,8 @@
+
+# BoBoBo
+
+TOP_DEPS="src/common.h"
+TOP_SRCS="src/growing.c"
+
+PY_DEPS="src/py/py.h"
+PY_SRCS="src/py/py.c"

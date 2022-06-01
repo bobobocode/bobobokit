@@ -1,0 +1,36 @@
+
+# BoBoBo
+
+GRW_OBJS=objs
+CC=${CC:-cc}
+
+GRW_PLATFORM=
+
+opt=
+
+for option
+do
+    opt="$opt `echo $option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"`"
+
+    case "$option" in
+        -*=*) value=`echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//'` ;;
+           *) value="" ;;
+    esac
+
+    case "$option" in
+        --help)                          help=yes                   ;;
+
+        --prefix=)                       GRW_PREFIX="!"             ;;
+        --prefix=*)                      GRW_PREFIX="$value"        ;;
+        --log-path=*)              GRW_ERROR_LOG_PATH="$value";;
+        *)
+            echo "$0: error: invalid option \"$option\""
+            exit 1
+        ;;
+    esac
+done
+
+
+GRW_CONFIGURE="$opt"
+echo "configuring with opt: "
+echo " + $GRW_CONFIGURE"

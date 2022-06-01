@@ -1,0 +1,51 @@
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME="ys"
+ZSH_THEME="fino-time"
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+
+export HOME="/Users/bobobo"
+DEFAULT_USER="BoBoBo"
+
+
+bindkey -v
+plugins=(git autojump)
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+
+export OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1
+export CMAKE_PREFIX_PATH=/usr/local/opt/qt@5
+export PATH=/Library/Apple/usr/bin:/usr/local/opt/qt@5/bin:$PATH
+
+export JAVA_HOME=/usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/
+#export JAVA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,address=8008,server=y,suspend=y"
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export MAVEN_OPTS="-Xms1024m -Xmx3024m"
+export PATH=${HOME}/maven/bin:$PATH
+
+export PATH=/usr/local/Cellar/mysql-client/8.0.23/bin:$PATH
+export PATH=${HOME}/code/bobobokit/script:$PATH
+export PATH=${HOME}/code/driven/tools:$PATH
+
+
+alias tree="find . ! -path '*svn*' ! -path '*lib*' ! -path '*target*' ! -path '*class' ! -path '*pyc' ! -path '*idea*' ! -path '*swp' ! -path '*iml' | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+
+alias pull="git pull origin"
+alias push="git add . && git commit -m \"Save\" . && git push origin"
+alias status="git status"
+alias fetch="git fetch --all"
+alias branch="git branch -a"
+alias glog="git log"
+alias gglog="git log --oneline --decorate --graph --all --abbrev-commit"
+alias submodule="git submodule foreach"
+alias compose="docker-compose rm -sf && docker-compose up -d"
+
+alias dlog="docker logs"
+
+git config --global user.name "BoBoBo"
+git config --global user.email "bobobonet@163.com"

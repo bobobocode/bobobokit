@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+# BoBoBo
+
+
+. auto/options
+. auto/init
+. auto/sources
+
+test -d $NGX_OBJS || mkdir -p $NGX_OBJS
+
+if test -z "$GRW_PLATFORM"; then
+    echo "checking for OS"
+
+    GRW_SYSTEM=`uname -s 2>/dev/null`
+    GRW_RELEASE=`uname -r 2>/dev/null`
+    GRW_MACHINE=`uname -m 2>/dev/null`
+
+    GRW_PLATFORM="$GRW_SYSTEM:$GRW_RELEASE:$GRW_MACHINE";
+    echo " + $GRW_PLATFORM"
+
+    case "$GRW_SYSTEM" in
+        MINGW32_* | MINGW64_* | MSYS_*)
+            GRW_PLATFORM=win32
+        ;;
+    esac
+
+else
+    echo "building for $GRW_PLATFORM"
+    GRW_SYSTEM=$GRW_PLATFORM
+fi

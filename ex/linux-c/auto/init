@@ -1,0 +1,13 @@
+
+# BoBoBo
+
+GRW_MAKEFILE=$GRW_OBJS/Makefile
+
+# create Makefile
+cat << END > Makefile
+
+default:	build
+
+clean:
+	rm -rf Makefile $GRW_OBJS
+END

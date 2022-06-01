@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  gcc:
+    image: centos_gcc:latest
+    build:
+      dockerfile: ./dockerfile
+      context: .
+    container_name: gcc
+    environment:
+      - PYTHONPATH=$PYTHONPATH:/var/study/t
+    volumes:
+      - ~/code/bobobostudy/bobobostudy_c:/var/study
+    command:
+      - /bin/bash
+      - -c 
+      - |
+        tail -f /dev/null

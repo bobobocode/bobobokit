@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: dev.mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=db_test
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+    volumes:
+      - ./mysql_init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  test:
+    depends_on:
+      - mysql
+    image: python:3
+    container_name: dev.boboboscript
+    volumes:
+      - ..:/var/boboboscript
+    command:
+      - bash
+      - -c
+      - |
+        cd /var/boboboscript
+        rm -rf ./env/boboboscript-venv
+        ./run.sh -t trans_csv_mysql.py -p ./tests/sample_trans_csv_mysql
+        ./run.sh -t trans_mysql_csv.py -p ./tests/sample_trans_mysql_csv
