@@ -23,6 +23,7 @@ git merge master --allow-unrelated-histories
 git pull <remote> <branch>
 git push origin --delete <branch-name>
 git push <remote> <branch>
+git push --all origin -u
 
 git checkout <file>
 git checkout .
