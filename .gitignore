@@ -135,3 +135,4 @@ test-venv
 .DS_Store
 *log.txt
 *.py~
+node_modules
