@@ -21,7 +21,7 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'maralla/completor.vim'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'Yggdroot/indentLine'
-Plugin 'scrooloose/nerdtree'
+Plugin 'ianding1/leetcode.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -100,10 +100,6 @@ endfunction
 autocmd BufWritePost *.dot call Tdot()
 function Tdot()
     exec "!dot -Tpng % -o %.png"
-endfunction
-
-function Tuml()
-    exec "!~/code/bobokit/sh/plantuml/plantuml.sh %"
 endfunction
 
 function Eslint()
@@ -193,5 +189,12 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 let g:completor_node_binary = '/usr/local/bin/node'
 let g:completor_clang_binary = '/usr/bin/clang'
 
-map <C-e> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+map <C-e> :Ex<CR>
+
+let g:leetcode_solution_filetype='python3'
+let g:leetcode_browser='chrome'
+let g:leetcode_problemset='Algorithms'
+nnoremap <C-\>ll :LeetCodeList<cr>
+nnoremap <C-\>lt :LeetCodeTest<cr>
+nnoremap <C-\>ls :LeetCodeSubmit<cr>
+nnoremap <C-\>li :LeetCodeSignIn<cr>
