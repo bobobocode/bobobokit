@@ -198,3 +198,8 @@ nnoremap <C-\>ll :LeetCodeList<cr>
 nnoremap <C-\>lt :LeetCodeTest<cr>
 nnoremap <C-\>ls :LeetCodeSubmit<cr>
 nnoremap <C-\>li :LeetCodeSignIn<cr>
+
+nmap    w=  :resize +5<CR>
+nmap    w-  :resize -5<CR>
+nmap    w,  :vertical resize -5<CR>
+nmap    w.  :vertical resize +5<CR>
